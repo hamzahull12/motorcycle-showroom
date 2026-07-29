@@ -6,9 +6,19 @@ import {
 import authService from './auth.service.js';
 import authValidator from './auth.validator.js';
 
+// Cek apakah server berjalan di mode production (Vercel)
+const isProduction = process.env.NODE_ENV === 'production';
+
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: isProduction, // WAJIB true di HTTPS (Vercel)
+  sameSite: isProduction ? 'none' : 'lax', // WAJIB 'none' untuk beda domain di Vercel
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 hari
+  path: '/',
+};
+
 const login = async (req, res, next) => {
-  const validation =
-    authValidator.validateLogin(req.body);
+  const validation = authValidator.validateLogin(req.body);
 
   if (!validation.isValid) {
     return next(
@@ -19,24 +29,15 @@ const login = async (req, res, next) => {
     );
   }
 
-  const {
+  const { email, password } = req.body;
+
+  const tokens = await authService.login({
     email,
     password,
-  } = req.body;
-
-  const tokens =
-    await authService.login({
-      email,
-      password,
-    });
-
-  res.cookie('refreshToken', tokens.refreshToken, {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    path: '/',
   });
+
+  // Pasang cookie dengan opsi yang sudah disesuaikan
+  res.cookie('refreshToken', tokens.refreshToken, COOKIE_OPTIONS);
 
   return res.status(200).json({
     status: 'success',
@@ -64,10 +65,9 @@ const refresh = async (req, res, next) => {
     );
   }
 
-  const token =
-    await authService.refresh({
-      refreshToken,
-    });
+  const token = await authService.refresh({
+    refreshToken,
+  });
 
   return res.status(200).json({
     status: 'success',
@@ -86,12 +86,8 @@ const logout = async (req, res, next) => {
     refreshToken,
   });
 
-  res.clearCookie('refreshToken', {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
-    path: '/',
-  });
+  // Hapus cookie dengan opsi yang identik
+  res.clearCookie('refreshToken', COOKIE_OPTIONS);
 
   return res.status(204).send();
 };
