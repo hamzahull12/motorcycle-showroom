@@ -2,12 +2,13 @@
 import { useState, useEffect } from 'react';
 import brandApi from '../../api/brand.api.js';
 
+// Disamakan nilai default-nya dengan value opsi dropdown (lowercase)
 const INITIAL_FORM = {
   brand_id: '',
   title: '',
-  category: 'Matic',
-  engine_stroke: '4-Stroke',
-  transmission: 'Matic',
+  category: 'matic',
+  engine_stroke: '4_tak',
+  transmission: 'matic',
   engine_capacity_cc: 150,
   color: '',
   year: new Date().getFullYear(),
@@ -30,9 +31,9 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
         setFormData({
           brand_id: initialData.brand?.id || initialData.brand_id || '',
           title: initialData.title || '',
-          category: initialData.category || 'Matic',
-          engine_stroke: initialData.engine_stroke || '4-Stroke',
-          transmission: initialData.transmission || 'Matic',
+          category: initialData.category ? initialData.category.toLowerCase() : 'matic',
+          engine_stroke: initialData.engine_stroke || '4_tak',
+          transmission: initialData.transmission ? initialData.transmission.toLowerCase() : 'matic',
           engine_capacity_cc: initialData.engine_capacity_cc || 150,
           color: initialData.color || '',
           year: initialData.year || new Date().getFullYear(),
@@ -123,17 +124,17 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
               </select>
             </div>
 
+            {/* FIX: Value category disamakan ke lowercase */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Jenis Motor</label>
               <select
-                type="text"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               >
-                <option value="Matic">Matic</option>
-                <option value="Manual">Manual</option>
+                <option value="matic">Matic</option>
+                <option value="manual">Manual</option>
               </select>
             </div>
 
@@ -177,7 +178,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Transmisi</label>
               <select
-                type="status"
                 name="transmission"
                 value={formData.transmission}
                 onChange={handleChange}
@@ -192,7 +192,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Siklus Mesin</label>
               <select
-                type="text"
                 name="engine_stroke"
                 value={formData.engine_stroke}
                 onChange={handleChange}
