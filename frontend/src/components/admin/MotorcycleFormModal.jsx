@@ -5,9 +5,9 @@ import brandApi from '../../api/brand.api.js';
 const INITIAL_FORM = {
   brand_id: '',
   title: '',
-  category: 'Automatic',
+  category: 'Matic',
   engine_stroke: '4-Stroke',
-  transmission: 'Automatic',
+  transmission: 'Matic',
   engine_capacity_cc: 150,
   color: '',
   year: new Date().getFullYear(),
@@ -30,9 +30,9 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
         setFormData({
           brand_id: initialData.brand?.id || initialData.brand_id || '',
           title: initialData.title || '',
-          category: initialData.category || 'Automatic',
+          category: initialData.category || 'Matic',
           engine_stroke: initialData.engine_stroke || '4-Stroke',
-          transmission: initialData.transmission || 'Automatic',
+          transmission: initialData.transmission || 'Matic',
           engine_capacity_cc: initialData.engine_capacity_cc || 150,
           color: initialData.color || '',
           year: initialData.year || new Date().getFullYear(),
@@ -124,16 +124,17 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Kategori</label>
-              <input
-                type="text"
+              <label className="mb-1 block text-sm font-medium text-gray-700">Jenis Motor</label>
+              <select
+                type="status"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                placeholder="matic / Manual / Sport"
-                required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
+              >
+                <option value="Matic">Matic</option>
+                <option value="Manual">Manual</option>
+              </select>
             </div>
 
             <div>
@@ -175,26 +176,32 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Transmisi</label>
-              <input
-                type="text"
+              <select
+                type="status"
                 name="transmission"
                 value={formData.transmission}
                 onChange={handleChange}
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
+              >
+                <option value="Matic">Matic</option>
+                <option value="Manual">Manual</option>
+              </select>
             </div>
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Siklus Mesin</label>
-              <input
+              <select
                 type="text"
                 name="engine_stroke"
                 value={formData.engine_stroke}
                 onChange={handleChange}
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
+              >
+                <option value="2_tak">2_tak</option>
+                <option value="4_tak">4_tak</option>
+              </select>
             </div>
 
             <div>
