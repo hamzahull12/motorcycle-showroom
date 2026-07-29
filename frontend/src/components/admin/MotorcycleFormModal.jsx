@@ -184,8 +184,8 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               >
-                <option value="Matic">Matic</option>
-                <option value="Manual">Manual</option>
+                <option value="matic">matic</option>
+                <option value="manual">manual</option>
               </select>
             </div>
 
