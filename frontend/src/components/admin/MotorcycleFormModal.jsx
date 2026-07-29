@@ -130,7 +130,7 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                placeholder="Automatic / Manual / Sport"
+                placeholder="matic / Manual / Sport"
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               />
