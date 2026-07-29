@@ -126,7 +126,7 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Jenis Motor</label>
               <select
-                type="status"
+                type="text"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
