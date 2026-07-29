@@ -1,8 +1,11 @@
 // src/api/axios.js
 import axios from 'axios';
 
+// Ambil URL dari Environment Variable Vite, atau fallback ke URL Vercel backend jika env belum terbaca
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://motorcycle-showroom-two.vercel.app/api/v1';
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api/v1',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -54,9 +57,9 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        // Memanggil endpoint refresh token backend kamu
+        // Dynamic URL menggunakan API_BASE_URL agar aman di Local & Production
         const response = await axios.post(
-          'http://localhost:5000/api/v1/auth/refresh',
+          `${API_BASE_URL}/auth/refresh`,
           {},
           { withCredentials: true }
         );
@@ -69,7 +72,7 @@ api.interceptors.response.use(
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
           processQueue(null, newAccessToken);
-          return api(originalRequest); // Eksekusi ulang request awal (misal Edit Data)
+          return api(originalRequest); // Eksekusi ulang request awal
         }
       } catch (refreshError) {
         processQueue(refreshError, null);
