@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import brandApi from '../../api/brand.api.js';
 
-// Disamakan nilai default-nya dengan value opsi dropdown (lowercase)
 const INITIAL_FORM = {
   brand_id: '',
   title: '',
@@ -31,9 +30,9 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
         setFormData({
           brand_id: initialData.brand?.id || initialData.brand_id || '',
           title: initialData.title || '',
-          category: initialData.category ? initialData.category.toLowerCase() : 'matic',
+          category: initialData.category || 'matic',
           engine_stroke: initialData.engine_stroke || '4_tak',
-          transmission: initialData.transmission ? initialData.transmission.toLowerCase() : 'matic',
+          transmission: initialData.transmission || 'matic',
           engine_capacity_cc: initialData.engine_capacity_cc || 150,
           color: initialData.color || '',
           year: initialData.year || new Date().getFullYear(),
@@ -124,9 +123,9 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
               </select>
             </div>
 
-            {/* FIX: Value category disamakan ke lowercase */}
+            {/* OPSI CATEGORY SESUAI VALIDATOR BACKEND */}
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Jenis Motor</label>
+              <label className="mb-1 block text-sm font-medium text-gray-700">Kategori Motor</label>
               <select
                 name="category"
                 value={formData.category}
@@ -134,7 +133,13 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               >
                 <option value="matic">Matic</option>
-                <option value="manual">Manual</option>
+                <option value="bebek">Bebek</option>
+                <option value="sport">Sport</option>
+                <option value="naked">Naked</option>
+                <option value="cruiser">Cruiser</option>
+                <option value="adventure">Adventure</option>
+                <option value="classic">Classic</option>
+                <option value="electric">Electric</option>
               </select>
             </div>
 
@@ -175,6 +180,7 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
               />
             </div>
 
+            {/* OPSI TRANSMISSION SESUAI VALIDATOR BACKEND */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Transmisi</label>
               <select
@@ -184,11 +190,13 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               >
-                <option value="matic">matic</option>
-                <option value="manual">manual</option>
+                <option value="matic">Matic</option>
+                <option value="manual">Manual</option>
+                <option value="semi_automatic">Semi Automatic</option>
               </select>
             </div>
 
+            {/* OPSI ENGINE STROKE SESUAI VALIDATOR BACKEND */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Siklus Mesin</label>
               <select
@@ -198,8 +206,9 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               >
-                <option value="2_tak">2_tak</option>
-                <option value="4_tak">4_tak</option>
+                <option value="2_tak">2 Tak</option>
+                <option value="4_tak">4 Tak</option>
+                <option value="electric">Electric</option>
               </select>
             </div>
 
@@ -248,8 +257,8 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
               >
                 <option value="available">Available</option>
-                <option value="sold">Sold</option>
                 <option value="reserved">Reserved</option>
+                <option value="sold">Sold</option>
               </select>
             </div>
           </div>
