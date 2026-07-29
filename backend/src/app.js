@@ -10,24 +10,17 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 
-
 // Daftar domain yang diizinkan mengakses API
 const allowedOrigins = [
   'http://localhost:5173',
-  process.env.FRONTEND_URL, // Nanti diisi URL Vercel Frontend di Environment Variable
+  'https://motorcycle-showroom-r1hm.vercel.app', // Domain Vercel Frontend kamu
+  process.env.FRONTEND_URL,
 ].filter(Boolean);
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Izinkan request tanpa origin (seperti Postman/cURL) atau yang ada di daftar allowedOrigins
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true, // Wajib untuk cookie refresh token
+    origin: allowedOrigins, // Passing array langsung (aman dari 500 error)
+    credentials: true,       // Wajib untuk cookie refresh token
   })
 );
 
@@ -44,10 +37,7 @@ app.use('/health', healthRoutes);
 app.use('/api/v1/brands', brandRoutes);
 app.use('/api/v1/motorcycles', motorcycleRoutes);
 app.use('/api/v1', motorcycleImageRoutes);
-app.use(
-  '/api/v1/auth',
-  authRoutes,
-);
+app.use('/api/v1/auth', authRoutes);
 
 app.use(errorMiddleware);
 
