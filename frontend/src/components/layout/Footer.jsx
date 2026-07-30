@@ -21,7 +21,7 @@ const Footer = () => {
               to="/"
               className="text-xl font-bold tracking-tight text-white"
             >
-              Motorcycle Showroom
+              Doyot Motor Keroncong
             </Link>
 
             <p className="mt-4 max-w-sm text-sm leading-6 text-gray-500">
@@ -79,7 +79,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-10 border-t border-gray-200 pt-6">
           <p className="text-sm text-white">
-            © {new Date().getFullYear()} Motorcycle Showroom.
+            © {new Date().getFullYear()} Doyot Motor Keroncong.
             All rights reserved.
           </p>
         </div>
