@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -27,6 +27,7 @@ const CatalogPage = () => {
   // =========================
 
   const [search, setSearch] = useState('');
+  const searchInputRef = useRef(null);
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [status, setStatus] = useState('available');
@@ -138,6 +139,14 @@ const CatalogPage = () => {
 
   useEffect(() => {
     fetchMotorcycles();
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash === '#search') {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
   }, []);
 
   // =========================
@@ -336,6 +345,8 @@ const CatalogPage = () => {
             />
 
             <input
+              ref={searchInputRef}
+              id="search"
               type="text"
               value={search}
               onChange={(event) =>
