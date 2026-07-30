@@ -42,7 +42,7 @@ const Navbar = () => {
           to="/"
           className="text-xl font-bold tracking-tight text-gray-900"
         >
-          MOJOMOTOR
+          DOYOTMOTOR
         </Link>
 
         {/* Desktop Navigation */}

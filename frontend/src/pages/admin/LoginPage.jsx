@@ -58,7 +58,7 @@ const LoginPage = () => {
         <div className='rounded-2xl bg-white p-8 shadow-xl'>
           <div className='mb-8'>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
-              Admin Panel
+              Admin DOYOT
             </p>
 
             <h1 className="mt-3 text-3xl font-bold tracking-tight text-gray-950">
