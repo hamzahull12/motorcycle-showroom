@@ -13,7 +13,7 @@ const app = express();
 // Daftar domain yang diizinkan mengakses API
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://motorcycle-showroom-r1hm.vercel.app', // Domain Vercel Frontend kamu
+  'https://motorcycle-showroom-e37f.vercel.app/', // Domain Vercel Frontend kamu
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
