@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 
 const Footer = () => {
-  const phoneNumber = '6281234567890';
+  const phoneNumber = '6285770528852';
 
   const message = encodeURIComponent(
     'Halo, saya ingin menanyakan ketersediaan motor di showroom.'

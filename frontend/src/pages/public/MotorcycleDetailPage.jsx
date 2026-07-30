@@ -166,7 +166,7 @@ const MotorcycleDetailPage = () => {
 
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/6289513829074?text=${encodeURIComponent(
+              href={`https://wa.me/6285770528852?text=${encodeURIComponent(
                 `Halo, saya tertarik dengan ${motorcycle.title} dengan harga Rp ${Number(
                   motorcycle.price,
                 ).toLocaleString('id-ID')}. Apakah unit ini masih tersedia?`
