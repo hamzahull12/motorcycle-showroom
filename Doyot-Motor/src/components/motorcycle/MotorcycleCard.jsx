@@ -7,7 +7,6 @@ const MotorcycleCard = ({ motorcycle }) => {
     id,
     category,
     year,
-    mileage_km,
     price,
     status,
     brand,
@@ -57,10 +56,6 @@ const MotorcycleCard = ({ motorcycle }) => {
           <span>{year}</span>
 
           <span className="h-1 w-1 rounded-full bg-gray-300" />
-
-          <span>
-            {Number(mileage_km).toLocaleString('id-ID')} km
-          </span>
         </div>
 
         <div className="mt-5 flex items-end justify-between gap-4">
