@@ -181,7 +181,7 @@ const MotorcycleDetailPage = () => {
 
             {/* Quick specs */}
             <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <div className="rounded-xl border border-gray-500 bg-white p-4">
                 <Calendar
                   size={18}
                   className="text-gray-500"
@@ -196,7 +196,7 @@ const MotorcycleDetailPage = () => {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <div className="rounded-xl border border-gray-500 bg-white p-4">
                 <MapPin
                   size={18}
                   className="text-gray-500"
@@ -211,7 +211,7 @@ const MotorcycleDetailPage = () => {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <div className="rounded-xl border border-gray-500 bg-white p-4">
                 <p className="text-xs text-gray-500">
                   Status
                 </p>
@@ -234,77 +234,9 @@ const MotorcycleDetailPage = () => {
             </div>
           </div>
         </div>
-
-        Specifications
-        {/* <section className="mt-16 border-t border-gray-200 pt-10">
-          <h2 className="text-2xl font-bold">
-            Spesifikasi
-          </h2>
-
-          <div className="mt-6 grid gap-x-10 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
-            <Specification
-              label="Brand"
-              value={motorcycle.brand?.name}
-            />
-
-            <Specification
-              label="Kategori"
-              value={motorcycle.category}
-            />
-
-            <Specification
-              label="Kapasitas Mesin"
-              value={`${motorcycle.engine_capacity_cc} cc`}
-            />
-
-            <Specification
-              label="Transmisi"
-              value={motorcycle.transmission}
-            />
-
-            <Specification
-              label="Engine Stroke"
-              value={motorcycle.engine_stroke}
-            />
-
-            <Specification
-              label="Warna"
-              value={motorcycle.color}
-            />
-
-            <Specification
-              label="Tahun"
-              value={motorcycle.year}
-            />
-
-            <Specification
-              label="Kilometer"
-              value={`${Number(
-                motorcycle.mileage_km,
-              ).toLocaleString('id-ID')} km`}
-            />
-          </div>
-        </section> */}
       </div>
     </main>
   );
 };
-
-// const Specification = ({
-//   label,
-//   value,
-// }) => {
-//   return (
-//     <div className="border-b border-gray-200 pb-4">
-//       <p className="text-sm text-gray-500">
-//         {label}
-//       </p>
-
-//       <p className="mt-1 font-semibold capitalize text-gray-900">
-//         {value || '-'}
-//       </p>
-//     </div>
-//   );
-// };
 
 export default MotorcycleDetailPage;
