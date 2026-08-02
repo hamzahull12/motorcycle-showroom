@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Calendar, Gauge, MapPin, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, MessageCircle } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 
 import motorcycleApi from '../../api/motorcycle.api.js';
@@ -196,7 +196,7 @@ const MotorcycleDetailPage = () => {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              {/* <div className="rounded-xl border border-gray-200 bg-white p-4">
                 <Gauge
                   size={18}
                   className="text-gray-500"
@@ -212,7 +212,7 @@ const MotorcycleDetailPage = () => {
                   ).toLocaleString('id-ID')}{' '}
                   km
                 </p>
-              </div>
+              </div> */}
 
               <div className="rounded-xl border border-gray-200 bg-white p-4">
                 <MapPin
