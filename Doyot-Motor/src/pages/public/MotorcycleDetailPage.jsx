@@ -254,7 +254,7 @@ const MotorcycleDetailPage = () => {
         </div>
 
         Specifications
-        <section className="mt-16 border-t border-gray-200 pt-10">
+        {/* <section className="mt-16 border-t border-gray-200 pt-10">
           <h2 className="text-2xl font-bold">
             Spesifikasi
           </h2>
@@ -302,27 +302,27 @@ const MotorcycleDetailPage = () => {
               ).toLocaleString('id-ID')} km`}
             />
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );
 };
 
-const Specification = ({
-  label,
-  value,
-}) => {
-  return (
-    <div className="border-b border-gray-200 pb-4">
-      <p className="text-sm text-gray-500">
-        {label}
-      </p>
+// const Specification = ({
+//   label,
+//   value,
+// }) => {
+//   return (
+//     <div className="border-b border-gray-200 pb-4">
+//       <p className="text-sm text-gray-500">
+//         {label}
+//       </p>
 
-      <p className="mt-1 font-semibold capitalize text-gray-900">
-        {value || '-'}
-      </p>
-    </div>
-  );
-};
+//       <p className="mt-1 font-semibold capitalize text-gray-900">
+//         {value || '-'}
+//       </p>
+//     </div>
+//   );
+// };
 
 export default MotorcycleDetailPage;
