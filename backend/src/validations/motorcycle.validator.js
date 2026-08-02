@@ -35,15 +35,12 @@ const validateFilters = ({
   minPrice,
   maxPrice,
   minYear,
-  maxYear
+  maxYear,
 }) => {
   const errors = {};
 
   if (search !== undefined) {
-    if (
-      typeof search !== 'string' ||
-      search.trim().length === 0
-    ) {
+    if (typeof search !== 'string' || search.trim().length === 0) {
       errors.search = 'Search must be a non-empty string';
     } else if (search.trim().length < 2) {
       errors.search = 'Search must be at least 2 characters';
@@ -75,11 +72,7 @@ const validateFilters = ({
     }
   }
 
-  const allowedStatuses = [
-    'available',
-    'reserved',
-    'sold',
-  ];
+  const allowedStatuses = ['available', 'reserved', 'sold'];
 
   if (status !== undefined) {
     if (typeof status !== 'string' || status.trim().length === 0) {
@@ -89,12 +82,8 @@ const validateFilters = ({
     }
   }
 
-  const allowedSortFields = [
-    'price',
-    'year',
-    'mileage',
-    'created_at',
-  ];
+  // 'mileage' telah dihapus dari allowedSortFields
+  const allowedSortFields = ['price', 'year', 'created_at'];
 
   if (sortBy !== undefined) {
     if (!allowedSortFields.includes(sortBy)) {
@@ -102,10 +91,7 @@ const validateFilters = ({
     }
   }
 
-  const allowedSortOrders = [
-    'asc',
-    'desc',
-  ];
+  const allowedSortOrders = ['asc', 'desc'];
 
   if (sortOrder !== undefined) {
     if (!allowedSortOrders.includes(sortOrder)) {
