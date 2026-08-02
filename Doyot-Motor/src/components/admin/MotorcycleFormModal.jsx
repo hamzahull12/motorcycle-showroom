@@ -11,7 +11,6 @@ const INITIAL_FORM = {
   engine_capacity_cc: 150,
   color: '',
   year: new Date().getFullYear(),
-  mileage_km: 0,
   price: 0,
   tax_expired_at: '',
   status: 'available',
@@ -36,7 +35,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
           engine_capacity_cc: initialData.engine_capacity_cc || 150,
           color: initialData.color || '',
           year: initialData.year || new Date().getFullYear(),
-          mileage_km: initialData.mileage_km || 0,
           price: initialData.price || 0,
           tax_expired_at: initialData.tax_expired_at
             ? new Date(initialData.tax_expired_at).toISOString().split('T')[0]
@@ -138,8 +136,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 <option value="naked">Naked</option>
                 <option value="cruiser">Cruiser</option>
                 <option value="adventure">Adventure</option>
-                <option value="classic">Classic</option>
-                <option value="electric">Electric</option>
               </select>
             </div>
 
@@ -180,7 +176,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
               />
             </div>
 
-            {/* OPSI TRANSMISSION SESUAI VALIDATOR BACKEND */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Transmisi</label>
               <select
@@ -196,7 +191,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
               </select>
             </div>
 
-            {/* OPSI ENGINE STROKE SESUAI VALIDATOR BACKEND */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Siklus Mesin</label>
               <select
@@ -210,18 +204,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
                 <option value="4_tak">4 Tak</option>
                 <option value="electric">Electric</option>
               </select>
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Jarak Tempuh (KM)</label>
-              <input
-                type="number"
-                name="mileage_km"
-                value={formData.mileage_km}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
             </div>
 
             <div>
