@@ -196,24 +196,6 @@ const MotorcycleDetailPage = () => {
                 </p>
               </div>
 
-              {/* <div className="rounded-xl border border-gray-200 bg-white p-4">
-                <Gauge
-                  size={18}
-                  className="text-gray-500"
-                />
-
-                <p className="mt-3 text-xs text-gray-500">
-                  Kilometer
-                </p>
-
-                <p className="mt-1 font-semibold">
-                  {Number(
-                    motorcycle.mileage_km,
-                  ).toLocaleString('id-ID')}{' '}
-                  km
-                </p>
-              </div> */}
-
               <div className="rounded-xl border border-gray-200 bg-white p-4">
                 <MapPin
                   size={18}
@@ -241,7 +223,7 @@ const MotorcycleDetailPage = () => {
             </div>
 
             {/* Description */}
-            <div className="mt-8 border-t border-gray-200 pt-8">
+            <div className="mt-8 border-t border-gray-500 pt-8">
               <h2 className="text-lg font-bold">
                 Deskripsi
               </h2>
