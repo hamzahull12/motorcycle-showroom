@@ -223,7 +223,7 @@ const MotorcycleDetailPage = () => {
             </div>
 
             {/* Description */}
-            <div className="mt-8 border-t border-gray-500 pt-8">
+            <div className="mt-8 border-t border-gray-100 pt-8">
               <h2 className="text-lg font-bold">
                 Deskripsi
               </h2>
