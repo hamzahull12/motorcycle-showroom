@@ -253,7 +253,7 @@ const MotorcycleDetailPage = () => {
           </div>
         </div>
 
-        {/* Specifications */}
+        Specifications
         <section className="mt-16 border-t border-gray-200 pt-10">
           <h2 className="text-2xl font-bold">
             Spesifikasi
