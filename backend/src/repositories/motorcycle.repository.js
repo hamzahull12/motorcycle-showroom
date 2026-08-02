@@ -12,7 +12,7 @@ const findAll = async ({
   minPrice,
   maxPrice,
   minYear,
-  maxYear
+  maxYear,
 }) => {
   const offset = (page - 1) * limit;
 
@@ -66,15 +66,12 @@ const findAll = async ({
   }
 
   const whereClause =
-    conditions.length > 0
-      ? `WHERE ${conditions.join(' AND ')}`
-      : '';
+    conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-  // Whitelist sorting
+  // Whitelist sorting (mileage dihapus)
   const sortFields = {
     price: 'm.price',
     year: 'm.year',
-    mileage: 'm.mileage_km',
     created_at: 'm.created_at',
   };
 
@@ -93,14 +90,8 @@ const findAll = async ({
     m.title,
     m.slug,
     m.category,
-    m.engine_stroke,
-    m.transmission,
-    m.engine_capacity_cc,
-    m.color,
     m.year,
-    m.mileage_km,
     m.price,
-    m.tax_expired_at,
     m.status,
     m.location,
     m.description,
@@ -170,14 +161,8 @@ const findById = async (id) => {
         m.title,
         m.slug,
         m.category,
-        m.engine_stroke,
-        m.transmission,
-        m.engine_capacity_cc,
-        m.color,
         m.year,
-        m.mileage_km,
         m.price,
-        m.tax_expired_at,
         m.status,
         m.location,
         m.description,
@@ -225,14 +210,8 @@ const create = async ({
   title,
   slug,
   category,
-  engineStroke,
-  transmission,
-  engineCapacityCc,
-  color,
   year,
-  mileageKm,
   price,
-  taxExpiredAt,
   status,
   location,
   description,
@@ -244,23 +223,15 @@ const create = async ({
       title,
       slug,
       category,
-      engine_stroke,
-      transmission,
-      engine_capacity_cc,
-      color,
       year,
-      mileage_km,
       price,
-      tax_expired_at,
       status,
       location,
       description
     )
     VALUES (
       $1, $2, $3, $4, $5,
-      $6, $7, $8, $9, $10,
-      $11, $12, $13, $14, $15,
-      $16
+      $6, $7, $8, $9, $10
     )
     RETURNING
       id,
@@ -268,14 +239,8 @@ const create = async ({
       title,
       slug,
       category,
-      engine_stroke,
-      transmission,
-      engine_capacity_cc,
-      color,
       year,
-      mileage_km,
       price,
-      tax_expired_at,
       status,
       location,
       description,
@@ -289,14 +254,8 @@ const create = async ({
     title,
     slug,
     category,
-    engineStroke,
-    transmission,
-    engineCapacityCc,
-    color,
     year,
-    mileageKm,
     price,
-    taxExpiredAt,
     status,
     location,
     description,
@@ -307,33 +266,14 @@ const create = async ({
   return result.rows[0];
 };
 
-const findBySlug = async (slug) => {
-  const query = `
-    SELECT id
-    FROM motorcycles
-    WHERE slug = $1
-    LIMIT 1;
-  `;
-
-  const result = await pool.query(query, [slug]);
-
-  return result.rows[0] || null;
-};
-
 const update = async ({
   id,
   brandId,
   title,
   slug,
   category,
-  engineStroke,
-  transmission,
-  engineCapacityCc,
-  color,
   year,
-  mileageKm,
   price,
-  taxExpiredAt,
   status,
   location,
   description,
@@ -352,14 +292,8 @@ const update = async ({
   addField('title', title);
   addField('slug', slug);
   addField('category', category);
-  addField('engine_stroke', engineStroke);
-  addField('transmission', transmission);
-  addField('engine_capacity_cc', engineCapacityCc);
-  addField('color', color);
   addField('year', year);
-  addField('mileage_km', mileageKm);
   addField('price', price);
-  addField('tax_expired_at', taxExpiredAt);
   addField('status', status);
   addField('location', location);
   addField('description', description);
@@ -380,14 +314,8 @@ const update = async ({
       title,
       slug,
       category,
-      engine_stroke,
-      transmission,
-      engine_capacity_cc,
-      color,
       year,
-      mileage_km,
       price,
-      tax_expired_at,
       status,
       location,
       description,
@@ -399,6 +327,20 @@ const update = async ({
 
   return result.rows[0];
 };
+
+const findBySlug = async (slug) => {
+  const query = `
+    SELECT id
+    FROM motorcycles
+    WHERE slug = $1
+    LIMIT 1;
+  `;
+
+  const result = await pool.query(query, [slug]);
+
+  return result.rows[0] || null;
+};
+
 
 const remove = async (id) => {
   const query = `

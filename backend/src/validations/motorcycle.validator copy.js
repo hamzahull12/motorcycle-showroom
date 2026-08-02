@@ -195,14 +195,8 @@ const validateCreateMotorcycle = ({
   brand_id,
   title,
   category,
-  engine_stroke,
-  transmission,
-  engine_capacity_cc,
-  color,
   year,
-  mileage_km,
   price,
-  tax_expired_at,
   status,
   location,
   description,
@@ -242,84 +236,19 @@ const validateCreateMotorcycle = ({
     errors.category = 'Invalid category';
   }
 
-  const validEngineStrokes = [
-    '2_tak',
-    '4_tak',
-    'electric',
-  ];
-
-  if (engine_stroke === undefined) {
-    errors.engine_stroke = 'Engine stroke is required';
-  } else if (!validEngineStrokes.includes(engine_stroke)) {
-    errors.engine_stroke = 'Invalid engine stroke';
-  }
-
-  const validTransmissions = [
-    'manual',
-    'matic',
-    'semi_automatic',
-  ];
-
-  if (transmission === undefined) {
-    errors.transmission = 'Transmission is required';
-  } else if (!validTransmissions.includes(transmission)) {
-    errors.transmission = 'Invalid transmission';
-  }
-
-  if (engine_capacity_cc === undefined) {
-    errors.engine_capacity_cc = 'Engine capacity is required';
-  } else if (
-    !Number.isInteger(engine_capacity_cc) ||
-    engine_capacity_cc < 0
-  ) {
-    errors.engine_capacity_cc =
-      'Engine capacity must be a positive integer';
-  }
-
-  if (color === undefined) {
-    errors.color = 'Color is required';
-  } else if (typeof color !== 'string') {
-    errors.color = 'Color must be a string';
-  }
-
   if (year === undefined) {
     errors.year = 'Year is required';
-  } else if (
-    !Number.isInteger(year) ||
-    year < 1900
-  ) {
+  } else if (!Number.isInteger(year) || year < 1900) {
     errors.year = 'Year must be a valid integer';
-  }
-
-  if (mileage_km === undefined) {
-    errors.mileage_km = 'Mileage is required';
-  } else if (
-    !Number.isInteger(mileage_km) ||
-    mileage_km < 0
-  ) {
-    errors.mileage_km =
-      'Mileage must be a positive integer';
   }
 
   if (price === undefined) {
     errors.price = 'Price is required';
-  } else if (
-    !Number.isInteger(price) ||
-    price < 0
-  ) {
-    errors.price =
-      'Price must be a positive integer';
+  } else if (!Number.isInteger(price) || price < 0) {
+    errors.price = 'Price must be a positive integer';
   }
 
-  if (tax_expired_at === undefined) {
-    errors.tax_expired_at = 'Tax expired date is required';
-  }
-
-  const validStatuses = [
-    'available',
-    'reserved',
-    'sold',
-  ];
+  const validStatuses = ['available', 'reserved', 'sold'];
 
   if (status === undefined) {
     errors.status = 'Status is required';
@@ -347,14 +276,8 @@ const validateUpdateMotorcycle = ({
   brand_id,
   title,
   category,
-  engine_stroke,
-  transmission,
-  engine_capacity_cc,
-  color,
   year,
-  mileage_km,
   price,
-  tax_expired_at,
   status,
   location,
   description,
@@ -366,14 +289,8 @@ const validateUpdateMotorcycle = ({
     brand_id,
     title,
     category,
-    engine_stroke,
-    transmission,
-    engine_capacity_cc,
-    color,
     year,
-    mileage_km,
     price,
-    tax_expired_at,
     status,
     location,
     description,
@@ -420,44 +337,6 @@ const validateUpdateMotorcycle = ({
     }
   }
 
-  // engine_stroke
-  if (engine_stroke !== undefined) {
-    const validEngineStrokes = ['2_tak', '4_tak'];
-
-    if (!validEngineStrokes.includes(engine_stroke)) {
-      errors.engine_stroke = 'Invalid engine stroke';
-    }
-  }
-
-  // transmission
-  if (transmission !== undefined) {
-    const validTransmissions = ['manual', 'matic'];
-
-    if (!validTransmissions.includes(transmission)) {
-      errors.transmission = 'Invalid transmission';
-    }
-  }
-
-  // engine_capacity_cc
-  if (engine_capacity_cc !== undefined) {
-    if (
-      !Number.isInteger(engine_capacity_cc) ||
-      engine_capacity_cc <= 0
-    ) {
-      errors.engine_capacity_cc =
-        'Engine capacity must be a positive integer';
-    }
-  }
-
-  // color
-  if (color !== undefined) {
-    if (typeof color !== 'string') {
-      errors.color = 'Color must be a string';
-    } else if (color.trim().length < 2) {
-      errors.color = 'Color must be at least 2 characters';
-    }
-  }
-
   // year
   if (year !== undefined) {
     if (!Number.isInteger(year) || year < 1900) {
@@ -465,37 +344,16 @@ const validateUpdateMotorcycle = ({
     }
   }
 
-  // mileage_km
-  if (mileage_km !== undefined) {
-    if (!Number.isInteger(mileage_km) || mileage_km < 0) {
-      errors.mileage_km =
-        'Mileage must be a positive integer';
-    }
-  }
-
   // price
   if (price !== undefined) {
     if (!Number.isInteger(price) || price <= 0) {
-      errors.price =
-        'Price must be a positive integer';
-    }
-  }
-
-  // tax_expired_at
-  if (tax_expired_at !== undefined) {
-    if (typeof tax_expired_at !== 'string') {
-      errors.tax_expired_at =
-        'Tax expired date must be a string';
+      errors.price = 'Price must be a positive integer';
     }
   }
 
   // status
   if (status !== undefined) {
-    const validStatuses = [
-      'available',
-      'reserved',
-      'sold',
-    ];
+    const validStatuses = ['available', 'reserved', 'sold'];
 
     if (!validStatuses.includes(status)) {
       errors.status = 'Invalid status';
@@ -514,8 +372,7 @@ const validateUpdateMotorcycle = ({
   // description
   if (description !== undefined) {
     if (typeof description !== 'string') {
-      errors.description =
-        'Description must be a string';
+      errors.description = 'Description must be a string';
     }
   }
 

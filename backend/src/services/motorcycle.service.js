@@ -16,7 +16,7 @@ const getAllMotorcycles = async ({
   minPrice,
   maxPrice,
   minYear,
-  maxYear
+  maxYear,
 }) => {
   return motorcycleRepository.findAll({
     page,
@@ -30,7 +30,7 @@ const getAllMotorcycles = async ({
     minPrice,
     maxPrice,
     minYear,
-    maxYear
+    maxYear,
   });
 };
 
@@ -42,14 +42,8 @@ const createMotorcycle = async ({
   brandId,
   title,
   category,
-  engineStroke,
-  transmission,
-  engineCapacityCc,
-  color,
   year,
-  mileageKm,
   price,
-  taxExpiredAt,
   status,
   location,
   description,
@@ -79,25 +73,19 @@ const createMotorcycle = async ({
     title,
     slug,
     category,
-    engineStroke,
-    transmission,
-    engineCapacityCc,
-    color,
     year,
-    mileageKm,
     price,
-    taxExpiredAt,
     status,
     location,
     description,
   });
-}
+};
 
 const updateMotorcycle = async (id, data) => {
   const motorcycle = await motorcycleRepository.findById(id);
 
   if (!motorcycle) {
-    throw new NotFoundError('Motorcycle not found')
+    throw new NotFoundError('Motorcycle not found');
   }
 
   const updateData = {
@@ -116,7 +104,7 @@ const updateMotorcycle = async (id, data) => {
   if (data.title !== undefined) {
     const slug = slugify(data.title, {
       lower: true,
-      strict: true
+      strict: true,
     });
 
     const existingMotorcycle = await motorcycleRepository.findBySlug(slug);
@@ -127,8 +115,9 @@ const updateMotorcycle = async (id, data) => {
 
     updateData.slug = slug;
   }
+
   return motorcycleRepository.update(updateData);
-}
+};
 
 const deleteMotorcycle = async (id) => {
   const motorcycle =

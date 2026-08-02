@@ -8,14 +8,17 @@ const getAllMotorcycles = async (req, res, next) => {
     motorcycleValidator.validatePagination(req.query);
 
   if (!paginationValidation.isValid) {
-    return next(new BadRequestError('Validation failed', paginationValidation.errors));
+    return next(
+      new BadRequestError('Validation failed', paginationValidation.errors)
+    );
   }
 
-  const filterValidation =
-    motorcycleValidator.validateFilters(req.query);
+  const filterValidation = motorcycleValidator.validateFilters(req.query);
 
   if (!filterValidation.isValid) {
-    return next(new BadRequestError('Validation failed', filterValidation.errors));
+    return next(
+      new BadRequestError('Validation failed', filterValidation.errors)
+    );
   }
 
   const page = Number(req.query.page) || 1;
@@ -70,8 +73,7 @@ const getMotorcycleById = async (req, res, next) => {
 };
 
 const createMotorcycle = async (req, res, next) => {
-  const validation =
-    motorcycleValidator.validateCreateMotorcycle(req.body);
+  const validation = motorcycleValidator.validateCreateMotorcycle(req.body);
 
   if (!validation.isValid) {
     return next(new BadRequestError('Validation failed', validation.errors));
@@ -81,36 +83,23 @@ const createMotorcycle = async (req, res, next) => {
     brand_id,
     title,
     category,
-    engine_stroke,
-    transmission,
-    engine_capacity_cc,
-    color,
     year,
-    mileage_km,
     price,
-    tax_expired_at,
     status,
     location,
     description,
   } = req.body;
 
-  const motorcycle =
-    await motorcycleService.createMotorcycle({
-      brandId: brand_id,
-      title,
-      category,
-      engineStroke: engine_stroke,
-      transmission,
-      engineCapacityCc: engine_capacity_cc,
-      color,
-      year,
-      mileageKm: mileage_km,
-      price,
-      taxExpiredAt: tax_expired_at,
-      status,
-      location,
-      description,
-    });
+  const motorcycle = await motorcycleService.createMotorcycle({
+    brandId: brand_id,
+    title,
+    category,
+    year,
+    price,
+    status,
+    location,
+    description,
+  });
 
   return res.status(201).json({
     status: 'success',
@@ -122,24 +111,16 @@ const updateMotorcycle = async (req, res, next) => {
   const { id } = req.params;
 
   if (!validation.isValidUUID(id)) {
-    return next(
-      new BadRequestError(
-        'Invalid motorcycle ID format'
-      )
-    );
+    return next(new BadRequestError('Invalid motorcycle ID format'));
   }
 
-  const validationResult =
-    motorcycleValidator.validateUpdateMotorcycle(
-      req.body
-    );
+  const validationResult = motorcycleValidator.validateUpdateMotorcycle(
+    req.body
+  );
 
   if (!validationResult.isValid) {
     return next(
-      new BadRequestError(
-        'Validation failed',
-        validationResult.errors
-      )
+      new BadRequestError('Validation failed', validationResult.errors)
     );
   }
 
@@ -147,36 +128,23 @@ const updateMotorcycle = async (req, res, next) => {
     brand_id,
     title,
     category,
-    engine_stroke,
-    transmission,
-    engine_capacity_cc,
-    color,
     year,
-    mileage_km,
     price,
-    tax_expired_at,
     status,
     location,
     description,
   } = req.body;
 
-  const motorcycle =
-    await motorcycleService.updateMotorcycle(id, {
-      brandId: brand_id,
-      title,
-      category,
-      engineStroke: engine_stroke,
-      transmission,
-      engineCapacityCc: engine_capacity_cc,
-      color,
-      year,
-      mileageKm: mileage_km,
-      price,
-      taxExpiredAt: tax_expired_at,
-      status,
-      location,
-      description,
-    });
+  const motorcycle = await motorcycleService.updateMotorcycle(id, {
+    brandId: brand_id,
+    title,
+    category,
+    year,
+    price,
+    status,
+    location,
+    description,
+  });
 
   return res.status(200).json({
     status: 'success',
