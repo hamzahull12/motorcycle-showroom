@@ -1,4 +1,3 @@
-// src/components/admin/MotorcycleFormModal.jsx
 import { useState, useEffect } from 'react';
 import brandApi from '../../api/brand.api.js';
 
@@ -6,13 +5,8 @@ const INITIAL_FORM = {
   brand_id: '',
   title: '',
   category: 'matic',
-  engine_stroke: '4_tak',
-  transmission: 'matic',
-  engine_capacity_cc: 150,
-  color: '',
   year: new Date().getFullYear(),
   price: 0,
-  tax_expired_at: '',
   status: 'available',
   location: '',
   description: '',
@@ -30,15 +24,8 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
           brand_id: initialData.brand?.id || initialData.brand_id || '',
           title: initialData.title || '',
           category: initialData.category || 'matic',
-          engine_stroke: initialData.engine_stroke || '4_tak',
-          transmission: initialData.transmission || 'matic',
-          engine_capacity_cc: initialData.engine_capacity_cc || 150,
-          color: initialData.color || '',
           year: initialData.year || new Date().getFullYear(),
           price: initialData.price || 0,
-          tax_expired_at: initialData.tax_expired_at
-            ? new Date(initialData.tax_expired_at).toISOString().split('T')[0]
-            : '',
           status: initialData.status || 'available',
           location: initialData.location || '',
           description: initialData.description || '',
@@ -121,7 +108,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
               </select>
             </div>
 
-            {/* OPSI CATEGORY SESUAI VALIDATOR BACKEND */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Kategori Motor</label>
               <select
@@ -140,19 +126,6 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Warna</label>
-              <input
-                type="text"
-                name="color"
-                value={formData.color}
-                onChange={handleChange}
-                placeholder="misal: Hitam Doff"
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
-            </div>
-
-            <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Tahun</label>
               <input
                 type="number"
@@ -165,65 +138,11 @@ const MotorcycleFormModal = ({ isOpen, onClose, onSubmit, initialData, loading }
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Kapasitas Mesin (CC)</label>
-              <input
-                type="number"
-                name="engine_capacity_cc"
-                value={formData.engine_capacity_cc}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Transmisi</label>
-              <select
-                name="transmission"
-                value={formData.transmission}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              >
-                <option value="matic">Matic</option>
-                <option value="manual">Manual</option>
-                <option value="semi_automatic">Semi Automatic</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Siklus Mesin</label>
-              <select
-                name="engine_stroke"
-                value={formData.engine_stroke}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              >
-                <option value="2_tak">2 Tak</option>
-                <option value="4_tak">4 Tak</option>
-                <option value="electric">Electric</option>
-              </select>
-            </div>
-
-            <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">Harga (Rp)</label>
               <input
                 type="number"
                 name="price"
                 value={formData.price}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">Masa Berlaku Pajak</label>
-              <input
-                type="date"
-                name="tax_expired_at"
-                value={formData.tax_expired_at}
                 onChange={handleChange}
                 required
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-950"
